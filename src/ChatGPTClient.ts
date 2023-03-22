@@ -10,9 +10,10 @@ export class ChatGPTClient {
   }
   
   async getResponse(prompt: string): Promise<string> {
-    const url = "https://api.openai.com/v1/chat/completions"
+    const url = "https://sasca.openai.azure.com/openai/deployments/gpt/completions"
     const body = {
-      model: "gpt-3.5-turbo",
+      model: "gpt-35-turbo",
+      engine: "gpt",
       messages: [
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": prompt}
