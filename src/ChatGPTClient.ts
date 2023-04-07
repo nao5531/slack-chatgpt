@@ -10,17 +10,15 @@ export class ChatGPTClient {
   }
   
   async getResponse(prompt: string): Promise<string> {
-    const url = "https://sasca.openai.azure.com/openai/deployments/gpt/completions"
+    const url = "https://sasca.openai.azure.com/openai/deployments/gpt/chat/completions?api-version=2023-03-15-preview"
     const body = {
-      model: "gpt-35-turbo",
-      engine: "gpt",
       messages: [
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": prompt}
       ]
     }
     const headers = {
-      "Authorization": "Bearer " + this.apiKey
+      "api-key" : this.apiKey
     }
     try {
       const response = await this.networkService.post(url, body, headers)
